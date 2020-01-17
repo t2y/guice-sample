@@ -3,7 +3,7 @@ package guice.sample.module;
 import com.google.inject.AbstractModule;
 
 import guice.sample.MyClient;
-import guice.sample.MyClientProvider;
+import guice.sample.provider.MyClientProvider;
 
 public class ProviderModule extends AbstractModule {
 
