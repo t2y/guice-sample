@@ -16,11 +16,13 @@ public class Main {
 
   private static void runSimple(Configuration config) {
     val injector1 = Guice.createInjector(new SingletonModule(), new ConfigModule(config));
+    log.info("injector1.MySingleton.hash: " + injector1.getInstance(MySingleton.class).hashCode());
     val myApp1 = injector1.getInstance(MyApp.class);
     log.info("myApp1.hash: " + myApp1.hashCode());
     myApp1.run();
 
     val injector2 = Guice.createInjector(new EveryCreateModule(), new ConfigModule(config));
+    log.info("injector2.MySingleton.hash: " + injector2.getInstance(MySingleton.class).hashCode());
     val myApp2 = injector2.getInstance(MyApp.class);
     log.info("myApp2.hash: " + myApp2.hashCode());
     myApp2.run();
@@ -28,6 +30,7 @@ public class Main {
     val injector3 =
         Guice.createInjector(
             new ProviderModule(), new StaticInjectionModule(), new ConfigModule(config));
+    log.info("injector3.MySingleton.hash: " + injector3.getInstance(MySingleton.class).hashCode());
     val myApp3 = injector3.getInstance(MyApp.class);
     log.info("myApp3.hash: " + myApp3.hashCode());
     myApp3.run();
